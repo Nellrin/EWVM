@@ -455,18 +455,12 @@ module.exports = {
               break
 
             case 44: //dupn
-              if (operand_stack.length >= frame_pointer + 1){
-                var n = operand_stack.pop()
-                if (operand_stack.length >= frame_pointer + n){
-                  var values = []
+              if (operand_stack.length >= frame_pointer + 2){
+                const n = operand_stack.pop()
+                const v = operand_stack.pop()
                   for (let i=0; i < n; i++){
-                    var v = operand_stack.pop()
-                    values.push(v)
                     operand_stack.push(v)
                   }
-                  for (const v of values)
-                    operand_stack.push(v)
-                } else error = 'Segmentation Fault: dupn - elements missing'
               } else error = 'Segmentation Fault: dupn - elements missing'
               break
             case 45: //popn
@@ -529,15 +523,11 @@ module.exports = {
               break
 
             case 52: //dup
-              var values = []
               if (operand_stack.length >= frame_pointer + 1){
+                const v = operand_stack.pop();
                 for (let i=0; i < c[2]; i++){
-                  var v = operand_stack.pop()
-                  values.push(v)
                   operand_stack.push(v)
                 }
-                for (const v of values)
-                  operand_stack.push(v)
               } else error = 'Segmentation Fault: dup - elements missing'
               break
             case 53: //pop
