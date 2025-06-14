@@ -530,7 +530,7 @@ module.exports = {
 
             case 52: //dup
               var values = []
-              if (operand_stack.length >= frame_pointer + c[2]){
+              if (operand_stack.length >= frame_pointer + 1){
                 for (let i=0; i < c[2]; i++){
                   var v = operand_stack.pop()
                   values.push(v)
